@@ -59,6 +59,10 @@ example:`add x.x.x.x:8001://index/cmd.php cmd eval post`
 
 显示生成的ip列表
 
+### 清空ip列表
+
+命令: `clearip`
+
 ## flag
 
 **通过iplist和webshell获取flag，将获取到的flag提交到指定服务器**
@@ -84,6 +88,11 @@ example: `submit http:xxx.xxx.xx/xx/ JSESSIONID=A6F8;route=6cf03 pid=-1&pidName=
 
 提交命令如果不需要修改只需完整输入一次，之后可直接执行`submit`
 
+submit完成之后会有清空flag的选项(y/n)
+
+### 清空flag
+
+命令: `clearflag`
 
 
 ```

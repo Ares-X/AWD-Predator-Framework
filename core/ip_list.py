@@ -29,3 +29,7 @@ def print_ip():
     global ipList
     for i in ipList:
         print i
+
+def clear_ip():
+    global ipList
+    ipList=[]

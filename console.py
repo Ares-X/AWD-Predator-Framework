@@ -31,8 +31,10 @@ show          show webshell's path and pwd
 clear         clear webshell's path and pwd
 ip            set targets ip list
 showip        show targets ip list
+clearip       clear ip list
 getflag       get flag from targets with added webshell
 submit        sutmit flag to server
+clearflag     clear flags
 exit          exit
 showhelp      show core commands
 help [x]      show command x's usage and description
@@ -147,6 +149,18 @@ help [x]      show command x's usage and description
             command=argv
             set_command(argv)
             get_flag(ipList)
+
+    def help_showflag(self):
+        print "show flags what you got"
+
+    def do_showflag(self,argv):
+        show_flag()
+
+    def do_clearflag(self,argv):
+        clear_flag()
+
+    def do_clearip(self,argv):
+        clear_ip()
 
     def help_submit(self):
         print "submit : usage(the first time) : submit [url] [cookie](please remove ' ') [data](use '?' replace the flag )"
