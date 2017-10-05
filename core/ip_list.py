@@ -5,7 +5,8 @@ ipList=[]
 def ip_list(x):
     global ipList
     iplist=x.split('.')
-    if '-' in iplist:
+    print iplist
+    if '-' in x:
         for i in iplist:
             d=i
             if '-' in d:
@@ -22,7 +23,8 @@ def ip_list(x):
         ip = '.'.join(iplist)
         ipList.append(ip)
         ipList=sorted(set(ipList),key = ipList.index)
-    return ipList
+    print ipList
+
 
 def print_ip():
     global ipList

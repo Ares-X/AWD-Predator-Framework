@@ -120,20 +120,28 @@ help [x]      show command x's usage and description
         if len(array)<4:
             self.Error("the input was wrong")
             self.help_ip()
-            return
         ip_list(argv)
 
     def help_getflag(self):
         print "getflag  : usage : getflag curl xxxx "
         print "           example: getflag curl https:www.baidu.com"
+        print "           if you have input this command and it works ,just run getflag!"
 
     def do_getflag(self,argv):
+        global command
         if len(ipList)==0:
             self.Error("please set the ip list first!")
             self.help_ip()
             return
-        set_command(argv)
-        get_flag(ipList)
+        if argv=='':
+            if command=='':
+                print "You should input full command at the first time , usage : getflag curl xxxx"
+                return
+            else:
+                get_flag(ipList)
+        else:
+            set_command(argv)
+            get_flag(ipList)
 
     def help_submit(self):
         print "submit : usage(the first time) : submit [url] [cookie](please remove ' ') [data](use '?' replace the flag )"
