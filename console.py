@@ -136,7 +136,7 @@ help [x]      show command x's usage and description
         get_flag(ipList)
 
     def help_submit(self):
-        print "submit : usage(the first time) : submit [url] [cookie] [data](use '?' replace the flag )"
+        print "submit : usage(the first time) : submit [url] [cookie](please remove ' ') [data](use '?' replace the flag )"
         print "         example: submit http:xxx.xxx.xx/xx/ JSESSIONID=A6F8;route=6cf03 pid=-1&pidName=&flag=?"
         print "         if you have input this command and it works ,just run submit!"
 
@@ -146,8 +146,8 @@ help [x]      show command x's usage and description
             self.Error("You don't have any flag,please get flag at first")
             self.help_getflag()
             return
+        array=argv.split(' ')
         global url,datas,cookies
-        array = argv.split(' ')
         if len(array)==0 and url != '' and cookies != '' and datas != '':
             submit_flag()
             return
@@ -155,7 +155,7 @@ help [x]      show command x's usage and description
             self.Error("You should input full command at the first time : submit [url] [cookie] [data](use '?' replace the flag )")
             return
         elif len(array)!=0 and len(array)!=3:
-            self.Error("input is wrong !")
+            self.Error("input is wrong ! have you remove ' ' in cookie?")
             self.help_submit()
             return
         elif len(array)==3:

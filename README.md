@@ -49,7 +49,7 @@ example:`add x.x.x.x:8001://index/cmd.php cmd eval post`
 
 ### 添加指定ip
 
-命令: 'ip x.x.x.x'
+命令: `ip x.x.x.x`
 
 执行命令后,`x.x.x.x`将被添加到ip列表中,会自动去除重复项和进行排序
 

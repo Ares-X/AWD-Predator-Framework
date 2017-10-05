@@ -22,7 +22,7 @@ def ip_list(x):
         ip = '.'.join(iplist)
         ipList.append(ip)
         ipList=sorted(set(ipList),key = ipList.index)
-
+    return ipList
 
 def print_ip():
     global ipList
