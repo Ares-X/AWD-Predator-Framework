@@ -41,7 +41,7 @@ help [x]      show command x's usage and description
         print self.commandHelp
 
 
-    def do_showhelp(self):
+    def do_showhelp(self,argv):
         print self.commandHelp
 
     def help_add(self):
@@ -88,7 +88,10 @@ help [x]      show command x's usage and description
         print "       load shell path and pwd"
 
     def do_load(self,argv):
-        load_shell_path_pwd()
+        try:
+            load_shell_path_pwd()
+        except:
+            print "load failed,please run save fist"
 
     def help_save(self):
         print "save : usage : save"
@@ -129,6 +132,7 @@ help [x]      show command x's usage and description
 
     def do_getflag(self,argv):
         global command
+
         if len(ipList)==0:
             self.Error("please set the ip list first!")
             self.help_ip()
@@ -140,6 +144,7 @@ help [x]      show command x's usage and description
             else:
                 get_flag(ipList)
         else:
+            command=argv
             set_command(argv)
             get_flag(ipList)
 

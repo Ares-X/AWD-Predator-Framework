@@ -51,26 +51,28 @@ def show_sap():
 
 #保存shell路径和密码
 def save_shell_path_pwd():
-    with open('GET_eval.pickle','wb') as f:
+    with open('data/GET_eval.pickle','wb') as f:
         pickle.dump(GET_eval_shells_path_pwd,f)
-    with open('POST_eval.pickle','wb') as y:
+    with open('data/POST_eval.pickle','wb') as y:
         pickle.dump(POST_eval_shells_path_pwd,y)
-    with open('GET_exec.pickle','wb') as g:
+    with open('data/GET_exec.pickle','wb') as g:
         pickle.dump(GET_exec_shells_path_pwd,g)
-    with open('POST_exec.pickle','wb') as u:
+    with open('data/POST_exec.pickle','wb') as u:
         pickle.dump(POST_exec_shells_path_pwd,u)
+    print "save ok"
 
 #读取shell路径和密码
 def load_shell_path_pwd():
     global GET_eval_shells_path_pwd,POST_eval_shells_path_pwd,GET_exec_shells_path_pwd, POST_exec_shells_path_pwd
-    with open('GET_eval.pickle','rb') as f:
+    with open('data/GET_eval.pickle','rb') as f:
         GET_eval_shells_path_pwd = pickle.load(f)
-    with open('POST_eval.pickle','rb') as y:
+    with open('data/POST_eval.pickle','rb') as y:
         POST_eval_shells_path_pwd = pickle.load(y)
-    with open('GET_exec.pickle','rb') as g:
+    with open('data/GET_exec.pickle','rb') as g:
         GET_exec_shells_path_pwd = pickle.load(g)
-    with open('POST_exec.pickle','rb') as u:
+    with open('data/POST_exec.pickle','rb') as u:
         POST_exec_shells_path_pwd = pickle.load(u)
+    print "load ok"
 
 #清除shell路径和密码
 def clear_shell_path_pwd():
@@ -79,3 +81,4 @@ def clear_shell_path_pwd():
     POST_eval_shells_path_pwd.clear()
     GET_exec_shells_path_pwd.clear()
     POST_exec_shells_path_pwd.clear()
+    print "clear ok"

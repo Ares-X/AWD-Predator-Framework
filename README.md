@@ -80,6 +80,7 @@ example:`getflag curl www.baidu.com/flag.txt`
 命令: `submit [url] [cookie] [data](use '?' replace the flag )`
 
 example: `submit http:xxx.xxx.xx/xx/ JSESSIONID=A6F8;route=6cf03 pid=-1&pidName=&flag=?`
+**去掉cookie中的空格,data中flag所在位置需用?代替！**
 
 提交命令如果不需要修改只需完整输入一次，之后可直接执行`submit`
 
