@@ -3,7 +3,16 @@ AWD Predator Framework v1.0
               --code by AresX       
 			  
 
-在AWD攻防赛中通过给定的webshell批量获取提交flag
+* 在AWD攻防赛中通过给定的webshell批量获取提交flag
+
+* 专为不会现场挖洞写脚本的菜鸡准备,各路表哥给自己种的马越多效果越好!
+
+* 如果自身防护做的很好,那么基本上是没有什么卵用的,能做加固的大佬一定也不会需要这个给菜鸡准备的弱智工具
+
+* 用py去实现菜刀是一件代码量很大的事情，懒得做也不会做(以后可能会做)，所以需要手动设置一句话的功能函数和方法
+
+* 只对简单的单参数传递的一句话有用
+
 
 ## webshell
 
@@ -22,6 +31,14 @@ AWD Predator Framework v1.0
 example:`add x.x.x.x:8001://index/cmd.php cmd eval post`
 
 命令执行后webshell的路径和密码会以字典的形式储存
+
+**单独处理了一种特殊情况,使用md5加密的功能函数为eval,get方法的一句话**
+
+在添加时,可添加带md5加密的密码的路径
+
+如:`add :8003/x.php?pass=fuckyou x eval get` 
+
+
 
 ### 显示添加的webshell
 

