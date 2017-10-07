@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import pickle
+from core.ip_list import *
 
 # Example:GET_eval_shell_paths_pwd = {"/eval.php":"pass"}
 GET_eval_shells_path_pwd = {}
@@ -41,13 +42,14 @@ def Get_POST_exec_sap():
 
 def show_sap():
     for i in GET_eval_shells_path_pwd:
-        print i+':'+GET_eval_shells_path_pwd[i]
+        print i+':'+GET_eval_shells_path_pwd[i]+' eval get'
     for i in POST_eval_shells_path_pwd:
-        print i+':'+POST_eval_shells_path_pwd[i]
+        print i+':'+POST_eval_shells_path_pwd[i]+' eval post'
     for i in GET_exec_shells_path_pwd:
-        print i+':'+GET_exec_shells_path_pwd[i]
+        print i+':'+GET_exec_shells_path_pwd[i]+' exec get'
     for i in POST_exec_shells_path_pwd:
-        print i+':'+POST_exec_shells_path_pwd[i]
+        print i+':'+POST_exec_shells_path_pwd[i]+'exec post'
+
 
 #保存shell路径和密码
 def save_shell_path_pwd():
@@ -59,6 +61,15 @@ def save_shell_path_pwd():
         pickle.dump(GET_exec_shells_path_pwd,g)
     with open('data/POST_exec.pickle','wb') as u:
         pickle.dump(POST_exec_shells_path_pwd,u)
+    target=open('auxi\webshell.txt','w')
+    for i in ipList:
+        for j in POST_eval_shells_path_pwd:
+            target.write(i)
+            target.write(j)
+            target.write(', ')
+            target.write(POST_eval_shells_path_pwd[j])
+            target.write('\n')
+    target.close()
     print "save ok"
 
 #读取shell路径和密码
