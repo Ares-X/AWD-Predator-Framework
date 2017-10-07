@@ -4,6 +4,7 @@ from cmd import Cmd
 from core.flag import *
 from core.shells import *
 from core.ip_list import *
+from auxi.upload import *
 
 class MainConsole(Cmd):
     prompt = "apf> "
@@ -35,6 +36,7 @@ clearip       clear ip list
 getflag       get flag from targets with added webshell
 submit        sutmit flag to server
 clearflag     clear flags
+upload        upload file
 exit          exit
 showhelp      show core commands
 help [x]      show command x's usage and description
@@ -196,7 +198,16 @@ help [x]      show command x's usage and description
                 else:
                     self.Error("url is not vaild!")
                     return
+    def help_upload(self):
+        print "upload : usage: upload <file>(default=shell.php)"
+        print "         upload your file with all POST eval shell"
 
+    def do_upload(self,argv):
+        if argv=='':
+            upload()
+        else:
+            upload(argv)
+        print "upload ok"
 
 
     def help_exit(self):
