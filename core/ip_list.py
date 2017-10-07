@@ -17,7 +17,7 @@ def ip_list(x):
             iplist[p]=str(j)
             ip='.'.join(iplist)
             ipList.append(ip)
-            ipList = sorted(set(ipList),key = ipList.index) #去重
+        ipList = sorted(set(ipList),key = ipList.index) #去重
     else:
         ip = '.'.join(iplist)
         ipList.append(ip)
