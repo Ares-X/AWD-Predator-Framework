@@ -19,8 +19,8 @@ exec_file = "curl xxxx"
 def set_command(command):
     cmd="'"+command+"'"
     global POST_file,eval_file,exec_file
-    #POST_file="system(%s);"%cmd
-    eval_file="echo exec(%s);"%cmd
+    eval_file="system(%s);"%cmd
+    #eval_file="echo exec(%s);"%cmd
     exec_file=command
 
 
