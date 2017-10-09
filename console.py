@@ -8,7 +8,7 @@ from cmd import Cmd
 from core.flag import *
 from core.shells import *
 from core.ip_list import *
-#from auxi.upload import *
+from auxi.upload import *
 
 class MainConsole(Cmd):
     prompt = "apf> "
@@ -203,16 +203,16 @@ help [x]      show command x's usage and description
                     self.Error("url is not vaild!")
                     return
     def help_upload(self):
-        print "upload : usage: upload (default will upload shell.php)"
-        #print "upload : usage: upload <file>(default=shell.php)"
-        print "         upload your file with all POST eval shell"
+        #print "upload : usage: upload (default will upload shell.php)"
+        print "upload : usage: upload <file>(default=shell.php)"
+        print "         upload your file with all POST eval shell , other file please save in 'auxi/' path"
 
-    #def do_upload(self,argv):
-    #    if argv=='':
-
-        #else:
-        #    upload("auxi//"+argv)
-        #print "upload ok"
+    def do_upload(self,argv):
+        if argv=='':
+            upload()
+        else:
+            upload("auxi/"+argv)
+        print "upload ok"
 
 
     def help_exit(self):
