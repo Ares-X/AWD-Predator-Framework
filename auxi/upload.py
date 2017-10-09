@@ -61,6 +61,3 @@ def upload(localpath='shell.php'):
         except Exception,e:
             print '[-] ' + posturl + ', connection failed!'
     shell_file.close()
-
-
-upload()
