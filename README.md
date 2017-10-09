@@ -1,4 +1,4 @@
-AWD Predator Framework v1.0                   
+    AWD Predator Framework v1.0                   
 
               --code by AresX       
 			  
@@ -11,7 +11,7 @@ AWD Predator Framework v1.0
 
 * 用py去实现菜刀是一件代码量很大的事情，懒得做也不会做(以后可能会做)，所以需要手动设置一句话的功能函数和方法
 
-* 只对简单的单参数传递的一句话有用
+* 针对简单的单参数传递的一句话和特定的加密一句话
 
 
 ## webshell
@@ -111,6 +111,25 @@ submit完成之后会有清空flag的选项(y/n)
 
 命令: `clearflag`
 
+### 上传
+
+命令: `upload <file>(default='auxi/shell.php')`
+
+默认上传文件为`auxi/shell.php` 如需使用修改默认文件,默认文件为加密不死马
+
+如需上传其他文件,将文件储存在`auxi/`目录下
+
+执行`upload xxx`即可
+
+如上传默认文件,直接执行`upload`
+
+
+
+
+
+
+---
+
 
 ```
 ###########
@@ -122,5 +141,6 @@ submit完成之后会有清空flag的选项(y/n)
 │   ├── iplist.py           // 生成ip列表   
 │—— auxi                    //辅助模块
 |   |—— upload.py           //webshell上传功能
-|
+|   |—— shell.php           //默认上传文件
+|   |—— webshell.txt        //一句话储存路径  
 ```
