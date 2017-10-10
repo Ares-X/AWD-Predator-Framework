@@ -33,3 +33,7 @@ def print_ip():
 def clear_ip():
     global ipList
     ipList=[]
+
+def remove_ip(ip):
+    global ipList
+    ipList.remove(ip)

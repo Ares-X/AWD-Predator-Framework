@@ -37,6 +37,7 @@ clear         clear webshell's path and pwd
 ip            set targets ip list
 showip        show targets ip list
 clearip       clear ip list
+removeip      remove your own ip from ip list"
 getflag       get flag from targets with added webshell
 submit        sutmit flag to server
 clearflag     clear flags
@@ -168,6 +169,7 @@ help [x]      show command x's usage and description
     def do_clearip(self,argv):
         clear_ip()
 
+
     def help_submit(self):
         print "submit : usage(the first time) : submit [url] [cookie](please remove ' ') [data](use '?' replace the flag )"
         print "         example: submit http:xxx.xxx.xx/xx/ JSESSIONID=A6F8;route=6cf03 pid=-1&pidName=&flag=?"
@@ -230,6 +232,15 @@ help [x]      show command x's usage and description
     def do_showip(self,argv):
         print_ip()
 
+    def help_removeip(self):
+        print "removeip : usage : removeip x.x.x.x"
+        print "           remove your own ip from ip list"
+    def do_removeip(self,argv):
+        array=argv.split('.')
+        if len(array)!=4:
+            self.Error("Invaild address!")
+            return
+        remove_ip(argv)
     def Error(self,info):
         print info
         return
