@@ -5,6 +5,7 @@ from core.flag import *
 # from core.shells import *
 # from core.ip_list import *
 from auxi.upload import *
+from auxi.shellcrack import *
 import os
 
 
@@ -41,6 +42,7 @@ getflag       get flag from targets with added webshell
 submit        sutmit flag to server
 clearflag     clear flags
 upload        upload file
+crack         crack webshell
 exit          exit
 showhelp      show core commands
 help [x]      show command x's usage and description
@@ -195,7 +197,7 @@ help [x]      show command x's usage and description
                 self.Error("example : submit http:xxx.xxx.xx/xx/ JSESSIONID=A6F8;route=6cf03 pid=-1&pidName=&flag=?")
                 return
             else:
-                if array[0].startswith("http://") or array[0].notstartswith("https://"):
+                if array[0].startswith("http://") or array[0].startswith("https://"):
                     url = array[0],cookies = array[1],datas = array[2]
                     return
                 else:
@@ -256,6 +258,13 @@ help [x]      show command x's usage and description
 
     def do_clearip(self,argv):
         clear_ip()
+
+    def do_crack(self,argv):
+        array=argv.split(' ')
+        if array[0].startswith("http://") or array[0].startswith("https://"):
+            self.Error("Url is not vaild !")
+            return
+        crack(argv)
 
     def Error(self,info):
         print info

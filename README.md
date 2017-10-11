@@ -53,6 +53,14 @@ example:`add x.x.x.x:8001://index/cmd.php cmd eval post`
 读取:`load`
 清空:`clear` //清空不会清空已经储存的webshell,除非在清空后执行保存命令
 
+### Webshell爆破
+
+*采用一种提速千倍的爆破方法*
+
+命令: `crack http://xxx.php`
+
+字典储存在`auxi/pwd.txt`中，可自行完善字典
+
 
 # iplist
 
@@ -124,7 +132,6 @@ submit完成之后会有清空flag的选项(y/n)
 如上传默认文件,直接执行`upload`
 
 如果文件上传成功，会自动访问一次上传的文件，激活不死马
-
 
 
 
