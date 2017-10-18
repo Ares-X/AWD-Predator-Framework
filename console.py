@@ -261,10 +261,12 @@ help [x]      show command x's usage and description
 
     def do_crack(self,argv):
         array=argv.split(' ')
-        if array[0].startswith("http://") or array[0].startswith("https://"):
+        if  array[0].startswith("http://") or array[0].startswith("https://"):
+            crack(argv)
+        else:
             self.Error("Url is not vaild !")
             return
-        crack(argv)
+
 
     def Error(self,info):
         print info
