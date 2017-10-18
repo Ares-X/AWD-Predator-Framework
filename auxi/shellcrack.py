@@ -6,7 +6,7 @@
 import requests
 
 def crack(shellurl):
-    pass_dic = 'pwd.txt'
+    pass_dic = 'auxi/pwd.txt'
     post_data = {}  # 创建字典集
     s = open(pass_dic,'r')
     content = s.readlines()  # 分行读取字典
