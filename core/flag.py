@@ -2,6 +2,7 @@
 
 import requests
 from core.shells import *
+import re
 #from core.ip_list import *
 
 #GET_eval_shells_path_pwd = {}
@@ -119,7 +120,9 @@ def submit_flag(url = url,cookies = cookies,datas = datas):
         if data_dict[j] == '?':
             p = j
     for i in flags:
-        data_dict[p] = i
+        pattern = re.compile(r'flag{\w+?}')
+        flag=pattern.search(i)
+        data_dict[p] = flag
         print i
         try:
             a = requests.post(url,data = data_dict,cookies = cookie_dict)
