@@ -1,27 +1,30 @@
 # -*- coding: utf-8 -*-
 import pickle
-from core.ip_list import *
 
 # Example:GET_eval_shell_paths_pwd = {"/eval.php":"pass"}
-GET_eval_shells_path_pwd = {}
-POST_eval_shells_path_pwd = {}
-GET_exec_shells_path_pwd = {}
-POST_exec_shells_path_pwd = {}
+
+from core.ip_list import *
+
+#GET_eval_shells_path_pwd,POST_eval_shells_path_pwd,GET_exec_shells_path_pwd,POST_exec_shells_path_pwd={},{},{},{}
 
 
 def GET_eval_shell_path_pwd(path,pwd):
+    global GET_eval_shells_path_pwd
     GET_eval_shells_path_pwd[path] = pwd
 
 
 def POST_eval_shell_path_pwd(path,pwd):
+    global POST_eval_shells_path_pwd
     POST_eval_shells_path_pwd[path] = pwd
 
 
 def GET_exec_shell_path_pwd(path,pwd):
+    global GET_exec_shells_path_pwd
     GET_exec_shells_path_pwd[path] = pwd
 
 
 def POST_exec_shell_path_pwd(path,pwd):
+    global POST_exec_shells_path_pwd
     POST_exec_shells_path_pwd[path] = pwd
 
 
@@ -65,10 +68,22 @@ def save_shell_path_pwd():
     target = open('auxi\webshell.txt','w')
     for i in ipList:
         for j in POST_eval_shells_path_pwd:
+            target.write('http://')
             target.write(i)
             target.write(j)
-            target.write(', ')
+            target.write(',')
+            target.write('post')
+            target.write(',')
             target.write(POST_eval_shells_path_pwd[j])
+            target.write('\n')
+        for k in GET_eval_shells_path_pwd:
+            target.write('http://')
+            target.write(i)
+            target.write(k)
+            target.write(',')
+            target.write('get')
+            target.write(',')
+            target.write(GET_eval_shells_path_pwd[k])
             target.write('\n')
     target.close()
     print "save ok"
@@ -77,14 +92,18 @@ def save_shell_path_pwd():
 # 读取shell路径和密码
 def load_shell_path_pwd():
     global GET_eval_shells_path_pwd,POST_eval_shells_path_pwd,GET_exec_shells_path_pwd,POST_exec_shells_path_pwd
-    with open('data/GET_eval.pickle','rb') as f:
-        GET_eval_shells_path_pwd = pickle.load(f)
-    with open('data/POST_eval.pickle','rb') as y:
-        POST_eval_shells_path_pwd = pickle.load(y)
-    with open('data/GET_exec.pickle','rb') as g:
-        GET_exec_shells_path_pwd = pickle.load(g)
-    with open('data/POST_exec.pickle','rb') as u:
-        POST_exec_shells_path_pwd = pickle.load(u)
+    with open('data/GET_eval.pickle','r') as f:
+        a = pickle.load(f)
+        GET_eval_shells_path_pwd=a
+    with open('data/POST_eval.pickle','r') as y:
+         b= pickle.load(y)
+         POST_eval_shells_path_pwd=b
+    with open('data/GET_exec.pickle','r') as g:
+         c= pickle.load(g)
+         GET_exec_shells_path_pwd=c
+    with open('data/POST_exec.pickle','r') as u:
+         d= pickle.load(u)
+         POST_exec_shells_path_pwd=d
     print "load ok"
 
 
@@ -96,3 +115,6 @@ def clear_shell_path_pwd():
     GET_exec_shells_path_pwd.clear()
     POST_exec_shells_path_pwd.clear()
     print "clear ok"
+
+
+
