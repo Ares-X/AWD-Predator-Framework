@@ -11,6 +11,10 @@
 
 * 针对简单的单参数传递的一句话和特定的加密一句话
 
+# 启动
+
+    python console.py
+
 
 # webshell
 
