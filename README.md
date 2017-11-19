@@ -105,8 +105,16 @@ example:`getflag curl www.baidu.com/flag.txt`
 
 获取命令如果不需要修改只需完整输入一次，之后可直接执行`getflag`
 
+### 查看flag
+
+命令: `showflag`
+
+
+
 ### 提交flag
 
+**攻防赛环境中获取到的flag通常不是标准格式,`flag.py`中的`submit_flag`函数中已经使用了`re.compile(r'flag{\w+?}')`尝试匹配标准flag格式**
+**如果出现问题,请自行在`flag.py`文件的`submit_flag`函数中使用正则匹配获得标准flag进行提交**
 
 *提交flag 需设定提交flag的链接，以及cookie和data,使用"?"替换flag在data中所在的参数*
 
