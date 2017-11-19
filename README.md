@@ -1,4 +1,4 @@
-    AWD Predator Framework v1.0                   
+    AWD Predator Framework v2.0                   
 
               --code by AresX       
 			  
