@@ -36,7 +36,7 @@ get方法在添加时,可添加带md5加密的密码的路径
 
 如:`add :8003/x.php?pass=fuckyou x eval get` 
 
-post方法请在`flag.py`中修改`for j in POST_eval_shells_path_pwd:`循环中的`evel_POST_data['pass']`为自己的密码，密码将被自动传递
+post方法请在`flag.py`中修改`for j in POST_eval_shells_path_pwd:`循环中的`eval_POST_data['pass']`为自己的密码，密码将被自动传递
 
 post添加方法同`add x.x.x.x:8001://index/cmd.php cmd eval post`
 
