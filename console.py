@@ -1,4 +1,7 @@
 #! -*- coding:utf-8 -*-
+# AWD-Predator-Framowork
+# Code by AresX
+# http://ares-x.com
 
 '''
  *
