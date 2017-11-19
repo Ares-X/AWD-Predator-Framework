@@ -58,8 +58,6 @@ def get_flag():
     #global target
     #target = open('auxi/flags.txt','w')
     for i in ipList:
-        print i
-
         for j in POST_eval_shells_path_pwd:
             evel_POST_data={}
             evel_POST_data['pass']='Sn3rtf4ck'
