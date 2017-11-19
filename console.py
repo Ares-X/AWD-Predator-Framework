@@ -26,8 +26,9 @@
 
 from cmd import Cmd
 from core.flag import *
-# from core.shells import *
-# from core.ip_list import *
+#from core.shells import *
+#from core.ip_list import *
+from auxi.command import *
 from auxi.upload import *
 from auxi.shellcrack import *
 import os
@@ -43,23 +44,20 @@ class MainConsole(Cmd):
     # 打印装逼信息
     def preloop(self):
         string = """
-              __          _______                               
-     /\ \        / /  __ \                              
-    /  \ \  /\  / /| |  | |                             
-   / /\ \ \/  \/ / | |  | |                             
-  / ____ \  /\  /  | |__| |                             
- /_/___ \_\/  \/   |_____/   _                          
- |  __ \            | |     | |                         
- | |__) | __ ___  __| | __ _| |_ ___  _ __              
- |  ___/ '__/ _ \/ _` |/ _` | __/ _ \| '__|             
- | |   | | |  __/ (_| | (_| | || (_) | |                
+     ___        ______                                  
+    / \ \      / /  _ \                                 
+   / _ \ \ /\ / /| | | |                                
+  / ___ \ V  V / | |_| |                                
+ /_/__ \_\_/\_/  |____/      _                          
+ |  _ \ _ __ ___  __| | __ _| |_ ___  _ __              
+ | |_) | '__/ _ \/ _` |/ _` | __/ _ \| '__|             
+ |  __/| | |  __/ (_| | (_| | || (_) | |                
  |_|___|_|  \___|\__,_|\__,_|\__\___/|_|           _    
- |  ____|                                         | |   
- | |__ _ __ __ _ _ __ ___   _____      _____  _ __| | __
- |  __| '__/ _` | '_ ` _ \ / _ \ \ /\ / / _ \| '__| |/ /
- | |  | | | (_| | | | | | |  __/\ V  V / (_) | |  |   < 
+ |  ___| __ __ _ _ __ ___   _____      _____  _ __| | __
+ | |_ | '__/ _` | '_ ` _ \ / _ \ \ /\ / / _ \| '__| |/ /
+ |  _|| | | (_| | | | | | |  __/\ V  V / (_) | |  |   < 
  |_|  |_|  \__,_|_| |_| |_|\___| \_/\_/ \___/|_|  |_|\_\
-
+                                                        
                 AWD Predator Framework v1.0                   
 
               --code by AresX                         
@@ -90,6 +88,8 @@ help [x]      show command x's usage and description
                 """
         print string
         print self.commandHelp
+
+    load_shell_path_pwd()
 
     def do_showhelp(self,argv):
         print self.commandHelp
@@ -180,6 +180,7 @@ help [x]      show command x's usage and description
         print "           if you have input this command and it works ,just run getflag!"
 
     def do_getflag(self,argv):
+        global GET_eval_shells_path_pwd,POST_eval_shells_path_pwd,GET_exec_shells_path_pwd,POST_exec_shells_path_pwd
         global command
 
         if len(ipList) == 0:
@@ -191,11 +192,11 @@ help [x]      show command x's usage and description
                 print "You should input full command at the first time , usage : getflag curl xxxx"
                 return
             else:
-                get_flag(ipList)
+                get_flag()
         else:
             command = argv
             set_command(argv)
-            get_flag(ipList)
+            get_flag()
 
     def help_showflag(self):
         print "Show flags what you got"
@@ -247,15 +248,18 @@ help [x]      show command x's usage and description
 
     def help_upload(self):
         print "upload : usage: upload <file>(default=shell.php)  #run 'save' at first!"
-        print "         upload your file with all POST eval shells , other file please save in 'auxi/' path"
+        print "         upload your file with all eval shells , other file please save in 'auxi/' path"
 
     def do_upload(self,argv):
         if os.path.getsize('auxi/webshell.txt') == 0:
             self.Error('You have no webshell!Please run save!')
             return
         if argv == '':
-            upload()
-            print "upload ok"
+            try:
+                upload()
+                print "upload ok"
+            except:
+                self.Error('Upload failed')
         else:
             try:
                 upload("auxi/" + argv)
@@ -267,6 +271,12 @@ help [x]      show command x's usage and description
                 else:
                     self.Error('Upload failed!')
                     return
+    def help_cupload(self):
+        print "Usage : command   #run save first!"
+        print "        upload linux command undead webshell"
+
+    def do_cupload(self,argv):
+        cupload()
 
     def help_exit(self):
         print "exit "
