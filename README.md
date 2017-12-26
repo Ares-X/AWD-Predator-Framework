@@ -30,7 +30,10 @@
 
 一句话密码为`cmd` 功能函数为`eval` 方法为`POST`
 
-example:`add x.x.x.x:8001://index/cmd.php cmd eval post`
+
+example:`add :8001://index/cmd.php cmd eval post`
+
+注意这里添加一句话路径不加ip地址,ip地址要使用命令`ip`生成
 
 命令执行后webshell的路径和密码会以字典的形式储存
 
