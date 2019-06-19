@@ -52,7 +52,7 @@ def show_sap():
     for i in GET_exec_shells_path_pwd:
         print i + ':' + GET_exec_shells_path_pwd[i] + ' exec get'
     for i in POST_exec_shells_path_pwd:
-        print i + ':' + POST_exec_shells_path_pwd[i] + 'exec post'
+        print i + ':' + POST_exec_shells_path_pwd[i] + ' exec post'
 
 
 # 保存shell路径和密码
@@ -67,6 +67,7 @@ def save_shell_path_pwd():
         pickle.dump(POST_exec_shells_path_pwd,u)
     target = open('auxi\webshell.txt','w')
     for i in ipList:
+        print i
         for j in POST_eval_shells_path_pwd:
             target.write('http://')
             target.write(i)
@@ -85,6 +86,26 @@ def save_shell_path_pwd():
             target.write(',')
             target.write(GET_eval_shells_path_pwd[k])
             target.write('\n')
+        """
+        for m in GET_exec_shells_path_pwd:
+            target.write('http://')
+            target.write(i)
+            target.write(m)
+            target.write(',')
+            target.write('get')
+            target.write(',')
+            target.write(GET_exec_shells_path_pwd[m])
+            target.write('\n')
+        for n in POST_exec_shells_path_pwd:
+            target.write('http://')
+            target.write(i)
+            target.write(n)
+            target.write(',')
+            target.write('get')
+            target.write(',')
+            target.write(POST_exec_shells_path_pwd[n])
+            target.write('\n')
+        """
     target.close()
     print "save ok"
 
